@@ -1,0 +1,19 @@
+{% extends "appestudiantes/base.html" %}
+
+{% block subtitulo %}Lista de estudiantes{% endblock subtitulo %}
+
+{% block estilos %}
+h1.titulos-coder {
+  color: green;
+}
+{% endblock estilos %}
+
+{% block contenido %}
+{% include "appestudiantes/barra_saludo.html" %}
+<h1 class="titulos-coder">Lista de estudiantes</h1>
+<ul>
+{% for student in appestudiantes %}
+  <li>{{ student.apellido }}, {{ student.nombre }}</li>
+{% endfor %}
+</ul>
+{% endblock contenido %}
