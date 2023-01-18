@@ -2,11 +2,11 @@ from django.db import models
 
 class Curso(models.Model):
     nombre = models.CharField(max_length=64)
-    comision = models.IntegerField()
+    curso = models.IntegerField()
     fecha_inicio = models.DateField(null=True)
 
     def __str__(self):
-        return f"{self.nombre}, {self.comision}"
+        return f"{self.nombre}, {self.curso}"
 
 
 class Estudiante(models.Model):
@@ -31,16 +31,6 @@ class Profesor(models.Model):
 
     def __str__(self):
         return f"{self.apellido}, {self.nombre}"
-
-
-class Entregable(models.Model):
-    nombre = models.CharField(max_length=256)
-    fecha_entrega = models.DateTimeField()
-    esta_aprobado = models.BooleanField(default=False)
-
-
-class Instituto(models.Model):
-    nombre = models.CharField(max_length=256)
 
 
 

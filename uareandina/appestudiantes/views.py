@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 
 from appestudiantes.models import Estudiante, Profesor, Curso
-from appestudiantes.forms import CursoFormulario
+from appestudiantes.forms import CursoFormulario, EstudianteFormulario, ProfesorFormulario
 
 
 def inicio(request):
@@ -55,7 +55,7 @@ def crear_curso(request):
 
         if formulario.is_valid():
             data = formulario.cleaned_data
-            curso = Curso(nombre=data['nombre'], comision=data['comision'])
+            curso = Curso(nombre=data['nombre'], curso=data['curso'])
             curso.save()
             url_exitosa = reverse('listar_cursos')
             return redirect(url_exitosa)
@@ -67,12 +67,47 @@ def crear_curso(request):
         context={'formulario': formulario},
     )
 
+def crear_estudiante(request):
+    if request.method == "POST":
+        formulario = EstudianteFormulario(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            estudiante = Estudiante(nombre=data['nombre'], apellido=data['apellido'], dni=data['dni'], email=data['email'])
+            estudiante.save()
+            url_exitosa = reverse('listar_cursos')
+            return redirect(url_exitosa)
+    else:  # GET
+        formulario = EstudianteFormulario()
+    return render(
+        request=request,
+        template_name='appestudiantes/formulario_estudiante.html',
+        context={'formulario': formulario},
+    )
+
+def crear_profesor(request):
+    if request.method == "POST":
+        formulario = ProfesorFormulario(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            profesor = Profesor(nombre=data['nombre'], apellido=data['apellido'], dni=data['dni'], email=data['email'], profesion=data['profesion'])
+            profesor.save()
+            url_exitosa = reverse('listar_cursos')
+            return redirect(url_exitosa)
+    else:  # GET
+        formulario = ProfesorFormulario()
+    return render(
+        request=request,
+        template_name='appestudiantes/formulario_profesores.html',
+        context={'formulario': formulario},
+    )
 
 def buscar_cursos(request):
     if request.method == "POST":
         data = request.POST
         cursos = Curso.objects.filter(
-            Q(nombre__contains=data['busqueda']) | Q(comision__exact=data['busqueda'])
+            Q(curso__contains=data['busqueda']) | Q(curso__exact=data['busqueda'])
         )
         contexto = {
             'cursos': cursos
