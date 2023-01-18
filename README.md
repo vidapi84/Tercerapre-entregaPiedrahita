@@ -7,4 +7,4 @@
 3. **Acceso a la consola de administración:** Los datos de acceso a la consola de administración son:
 	* username: vidapi
 	* password: 1234
-4. **Conclusión:**Me parece que la curva de aprendizaje de Django es bastante elevada y requiere de tiempo y constancia dominar todos los elementos que la componen, de todas maneras es una interesante manera de ver todo el potencial del framework y la infinidad de elementos que se pueden desarrollar. 
+4. **Conclusión:** Me parece que la curva de aprendizaje de Django es bastante elevada y requiere de tiempo y constancia dominar todos los elementos que la componen, de todas maneras es una interesante manera de ver todo el potencial del framework y la infinidad de elementos que se pueden desarrollar. 
